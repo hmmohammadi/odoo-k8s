@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/hmmohammadi/odoo-k8s.git
-    targetRevision: master
+    targetRevision: HEAD
     path: dev
   destination:
     server: https://kubernetes.default.svc
