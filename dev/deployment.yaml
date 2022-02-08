@@ -17,7 +17,7 @@ spec:
         app: postgres
     spec:
       containers:
-      - image: bitnami/postgresql:latest
+      - image: bitnami/postgresql:13
         ports:
         - containerPort: 5432
         name: postgres
