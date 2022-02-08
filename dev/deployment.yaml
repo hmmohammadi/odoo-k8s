@@ -61,7 +61,7 @@ spec:
         app: odoo
     spec:
       containers:
-      - image: bitnami/odoo:13.0.20220110
+      - image: bitnami/odoo:13.0.20220110-debian-10-r26s
         name: odoo
         env:
           - name: ALLOW_EMPTY_PASSWORD
