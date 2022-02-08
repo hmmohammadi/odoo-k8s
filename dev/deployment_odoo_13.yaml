@@ -6,25 +6,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-dep
+  name: postgres-dep-13
   # namespace: argodoo
   labels:
-    app: postgres
+    app: postgres-13
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: postgres
+      app: postgres-13
   template:
     metadata:
       labels:
-        app: postgres
+        app: postgres-13
     spec:
       containers:
       - image: bitnami/postgresql:latest
         ports:
         - containerPort: 5432
-        name: postgres
+        name: postgres-13
         env:
         - name: ALLOW_EMPTY_PASSWORD
           value: 'yes'
@@ -36,42 +36,42 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgresql
+  name: postgresql-13
 spec:
   selector:
-    app: postgres
+    app: postgres-13
   ports:
     - protocol: TCP
-      port: 5432
+      port: 5433
       targetPort: 5432
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: odoo-deployment
+  name: odoo-deployment-13
   labels:
-    app: odoo
+    app: odoo-13
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: odoo
+      app: odoo-13
   template:
     metadata:
       labels:
-        app: odoo
+        app: odoo-13
     spec:
       containers:
-      - image: bitnami/odoo:latest
-        name: odoo
+      - image: bitnami/odoo:13.0.20220110
+        name: odoo-13
         env:
           - name: ALLOW_EMPTY_PASSWORD
             value: 'yes'
           - name: ODOO_DATABASE_HOST
-            value: 'postgresql'
+            value: 'postgresql-13'
           - name: ODOO_DATABASE_PORT_NUMBER
-            value: '5432'
+            value: '5433'
           - name: ODOO_DATABASE_USER
             value: 'bn_odoo'
           - name: ODOO_DATABASE_NAME
@@ -82,11 +82,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: odoo-svc
+  name: odoo-svc-13
 spec:
   selector:
-    app: odoo
+    app: odoo-13
   ports:
     - protocol: TCP
-      port: 8069
+      port: 8070
       targetPort: 8069
