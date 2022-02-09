@@ -8,10 +8,10 @@ spec:
   source:
     repoURL: https://github.com/hmmohammadi/odoo-k8s.git
     targetRevision: HEAD
-    path: dev
+    path: odoo-15 ## path tahat should be check every sync operations
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocdlab
+    namespace: odoo-15
   
   syncPolicy:
     syncOptions:

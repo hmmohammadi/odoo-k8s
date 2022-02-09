@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: odoo-deployment
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/hmmohammadi/odoo-k8s.git
+    targetRevision: HEAD
+    path: odoo-14 ## path tahat should be check every sync operations
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: odoo-14
+  
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    
+    automated:
+      selfHeal: true
+      prune: true
