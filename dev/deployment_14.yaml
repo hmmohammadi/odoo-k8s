@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-dep
-  namespace: odoo-13
+  name: postgres-dep-14
+  # namespace: argodoo
   labels:
-    app: postgres
+    app: postgres-14
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: postgres
+      app: postgres-14
   template:
     metadata:
       labels:
-        app: postgres
+        app: postgres-14
     spec:
       containers:
       - image: postgres:13
         ports:
         - containerPort: 5432
-        name: postgres
+        name: postgres-14
         env:
         - name: POSTGRES_DB
           value: 'postgres'
@@ -32,10 +32,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: postgres
-  namespace: odoo-13
 spec:
   selector:
-    app: postgres
+    app: postgres-14
   ports:
     - protocol: TCP
       port: 5432
@@ -45,23 +44,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: odoo-deployment
-  namespace: odoo-13
+  name: odoo-deployment-14
   labels:
-    app: odoo
+    app: odoo-14
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: odoo
+      app: odoo-14
   template:
     metadata:
       labels:
-        app: odoo
+        app: odoo-14
     spec:
       containers:
-      - image: odoo:13.0
-        name: odoo
+      - image: odoo:14.0
+        name: odoo-14
         env:
           # - name: ALLOW_EMPTY_PASSWORD
           #   value: 'yes'
@@ -79,12 +77,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: odoo-svc
-  namespace: odoo-13
+  name: odoo-svc-14
 spec:
   selector:
-    app: odoo
+    app: odoo-14
   ports:
     - protocol: TCP
-      port: 8069
+      port: 8070
       targetPort: 8069
