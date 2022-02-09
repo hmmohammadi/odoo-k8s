@@ -68,6 +68,8 @@ spec:
             value: 'yes'
           - name: ODOO_DATABASE_HOST
             value: 'postgresql'
+          - name: ODOO_DATABASE_ADMIN_PASSWORD
+            value: 'bitnami'
           - name: ODOO_DATABASE_PORT_NUMBER
             value: '5432'
           - name: ODOO_DATABASE_USER
